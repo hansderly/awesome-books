@@ -10,4 +10,12 @@ const addBook = (e) => {
   library.push(book);
 };
 
+const buttonRemove = document.querySelector('#remove');
+
+const removeBook = (e) => {
+
+}
+
+buttonRemove.addEventListener('click', removeBook );
+
 form.addEventListener('submit', addBook);
