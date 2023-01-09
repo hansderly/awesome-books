@@ -6,12 +6,12 @@ let library = JSON.parse(data);
 const loadBooks = () => {
   const bookWraper = document.querySelector('.bookWraper');
   let bookElement = '';
-  library.forEach((book) => {
+  library.forEach((book, index) => {
     bookElement += `
                 <div class="book">
                 <div id="book-title">${book.bookTitle}</div>
                 <div id="book-author">${book.bookAuthor}</div>
-                <button id="remove">Remove</button>
+                <button id="remove" onclick="remove(${index})" >Remove</button>
                 </div>
                 <hr> `;
   });
@@ -24,17 +24,9 @@ const remove = (index) => {
   library = library.filter((el, i) => i !== index);
   const libraryStringify = JSON.stringify(library);
   localStorage.setItem('library', libraryStringify);
-  window.location.reload();
+  loadBooks();
 };
-
-const addEventOnButton = () => {
-  const listButtonRemove = document.querySelectorAll('#remove');
-  listButtonRemove.forEach((button, index) => {
-    button.addEventListener('click', () => remove(index));
-  });
-};
-
-addEventOnButton();
+remove();
 
 const addBook = (e) => {
   e.preventDefault();
@@ -44,7 +36,7 @@ const addBook = (e) => {
   library.push(book);
   const libraryStringify = JSON.stringify(library);
   localStorage.setItem('library', libraryStringify);
-  window.location.reload();
+  loadBooks();
   form.reset();
 };
 
