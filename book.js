@@ -1,7 +1,8 @@
 const form = document.querySelector('.form');
 const { title, author } = form.elements;
-let library = [];
 
+let data = localStorage.getItem('library');
+let library = JSON.parse(data);
 const loadBooks = () => {
 	const bookWraper = document.querySelector('.bookWraper');
 	let bookElement = '';
@@ -21,7 +22,9 @@ loadBooks();
 
 const remove = (index) => {
 	library = library.filter((el, i) => i !== index);
-	loadBooks();
+	const libraryStringify = JSON.stringify(library);
+	localStorage.setItem('library', libraryStringify);
+	location.reload();
 };
 
 const addEventOnButton = () => {
@@ -39,7 +42,9 @@ const addBook = (e) => {
 	const bookAuthor = author.value;
 	const book = { bookTitle, bookAuthor };
 	library.push(book);
-	loadBooks();
+	const libraryStringify = JSON.stringify(library);
+	localStorage.setItem('library', libraryStringify);
+	location.reload();
 	form.reset();
 };
 
