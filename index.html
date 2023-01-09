@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <h1>AWESOME BOOK</h1>
     <section class="library">
-        <article class="book">
-            book1
+        <div class="book">
+            <div id="book-title">book1</div>
+            <div id="book-author">author1</div>
             <button>Remove</button>
-        </article>
-    <form class="form" action="" method="post">
-        <input type="text" name="title" id="title" placeholder="Title">
-        <input type="text" name="author" id="author" placeholder="Author">
-        <button>Add</button>
-    </form>
+            <hr>
+        </div>
 
+        <div class="form-container">
+            <form class="form" action="" method="post">
+                <label for="title"></label>
+                <input type="text" name="title" id="title" placeholder="Title"> <br>
+                <label for="author"></label>
+                <input type="text" name="author" id="author" placeholder="Author"> <br>
+                <button>Add</button>
+            </form>
+        </div>
     </section>
-    
+
 </body>
+
 </html>
