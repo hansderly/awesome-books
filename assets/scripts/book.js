@@ -15,8 +15,7 @@ const loadBooks = () => {
   library.forEach((book, index) => {
     bookElement += `
                 <div class="book">
-                <div id="book-title">${book.bookTitle}</div>
-                <div id="book-author">${book.bookAuthor}</div>
+                <div id="book-title">${book.bookTitle} by ${book.bookAuthor}</div>
                 <button id="remove" onclick="remove(${index})" >Remove</button>
                 </div>
                 <hr> `;
