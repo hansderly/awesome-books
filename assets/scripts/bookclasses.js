@@ -1,83 +1,71 @@
 /* eslint-disable max-classes-per-file */
+const data = localStorage.getItem('library');
+let library = JSON.parse(data) || [];
 class Book {
-  constructor(title, author) {
+  static books = []
+
+  constructor(id, title, author) {
+    this.id = id;
     this.title = title;
     this.author = author;
   }
-}
 
-class Library {
-  constructor() {
-    this.books = [];
+  add() {
+    library.push(this);
   }
 
-  add(book) {
-    this.books.push(book);
+  remove() {
+    library = library.filter((el, i) => i !== this.id);
   }
 
-  remove(id) {
-    this.books = this.books.filter((el, i) => i !== id);
+  static getBook(id) {
+    this.books.filter((bookId) => console.log(bookId));
   }
-
-  getList() {
-    return this.books;
-  }
-
-  setList(listBook) {
-    this.books = listBook;
+  
+  static setBook(book) {
+    books.push(book);
   }
 }
-
-
 
 const form = document.querySelector('.form');
-
 const { title, author } = form.elements;
 
-const data = localStorage.getItem('library');
-
-const library = new Library();
-
-library.setList(JSON.parse(data));
-
 const saveTolocalStorage = () => {
-    const libraryStringify = JSON.stringify(library);
-    localStorage.setItem('library', libraryStringify);
-  };
+  const libraryStringify = JSON.stringify(library);
+  localStorage.setItem('library', libraryStringify);
+};
 
-  const loadBooks = () => {
-    const bookWraper = document.querySelector('.bookWraper');
-    let bookElement = '';
-    const newlist = library.getList();
-    newlist.forEach((book, index) => {
-      bookElement += `
-                  <div class="book">
-                  <div id="book-title">${book.bookTitle} by ${book.bookAuthor}</div>
-                  <button id="remove" onclick="remove(${index})" >Remove</button>
-                  </div>
-                  <hr> `;
-    });
-    bookWraper.innerHTML = bookElement.length === 0 ? '<p> No book </p> <hr><br>' : bookElement;
-  };
-  loadBooks();
+const loadBooks = () => {
+  const bookWraper = document.querySelector('.bookWraper');
+  let bookElement = '';
+  library.forEach((book, index) => {
+    bookElement += `
+                <div class="book">
+                <div id="book-title">${book.title} by ${book.author}</div>
+                <button id="remove" onclick="remove(${book.id})" >Remove</button>
+                </div>
+                <hr> `;
+  });
+  bookWraper.innerHTML = bookElement.length === 0 ? '<p> No book </p> <hr><br>' : bookElement;
+};
+loadBooks();
 
-  const remove = (index) => {
-    library.remove(index);
-    loadBooks();
-  };
-  remove();
-
-  const addBook = (e) => {
-    e.preventDefault();
-    const bookTitle = title.value;
-    const bookAuthor = author.value;
-
-    const book = new Book(bookTitle, bookAuthor);
-
-    library.add(book);
-    saveTolocalStorage();
-    loadBooks();
-    form.reset();
-  };
-  form.addEventListener('submit', addBook);
+const remove = () => {
   
+  saveTolocalStorage();
+  loadBooks();
+};
+remove();
+
+const addBook = (e) => {
+  e.preventDefault();
+  const id = Math.floor(Math.random() * (1000 - 0) + 0);
+  const bookTitle = title.value;
+  const bookAuthor = author.value;
+  const newBook = new Book(id, bookTitle, bookAuthor);
+  newBook.add();
+  saveTolocalStorage();
+  loadBooks();
+  form.reset();
+};
+form.addEventListener('submit', addBook);
