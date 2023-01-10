@@ -2,6 +2,7 @@ const form = document.querySelector('.form');
 const { title, author } = form.elements;
 
 const data = localStorage.getItem('library');
+
 let library = JSON.parse(data) || [];
 
 const saveTolocalStorage = () => {
