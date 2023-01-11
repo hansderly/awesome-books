@@ -1,33 +1,25 @@
+const list = document.querySelector('#list');
+const addNew = document.querySelector('#add-new');
+const contact = document.querySelector('#contact');
 
-function showContact(){
+const librarySection = document.querySelector('.library');
+const addBookSection = document.querySelector('.addBook');
+const contactSection = document.querySelector('.contactInfo');
 
-const contact = document.querySelector('.contactInfo');
-const library = document.querySelector('.library');
-const addBook = document.querySelector('.addBook');
+list.addEventListener('click', () => {
+  librarySection.classList.remove('hide');
+  addBookSection.classList.add('hide');
+  contactSection.classList.add('hide');
+});
 
-library.style.display = 'none';
-addBook.style.display = 'none';
-contact.style.display = 'flex';
-}
+addNew.addEventListener('click', () => {
+  addBookSection.classList.remove('hide');
+  librarySection.classList.add('hide');
+  contactSection.classList.add('hide');
+});
 
-function showList(){
-
-    const contact = document.querySelector('.contactInfo');
-    const library = document.querySelector('.library');
-    const addBook = document.querySelector('.addBook');
-    
-    library.style.display = 'block';
-    addBook.style.display = 'none';
-    contact.style.display = 'none';
-}
-
-function showAdd(){
-
-    const contact = document.querySelector('.contactInfo');
-    const library = document.querySelector('.library');
-    const addBook = document.querySelector('.addBook');
-    
-    library.style.display = 'none';
-    addBook.style.display = 'block';
-    contact.style.display = 'none';
-}
+contact.addEventListener('click', () => {
+  librarySection.classList.add('hide');
+  addBookSection.classList.add('hide');
+  contactSection.classList.remove('hide');
+});

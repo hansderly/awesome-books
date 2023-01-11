@@ -18,6 +18,10 @@ h2 {
   text-align: center;
 }
 
+.hide {
+  display: none !important;
+}
+
 .library {
   padding: 2%;
 }
@@ -31,10 +35,6 @@ h2 {
   width: auto;
   display: flex;
   justify-content: space-between;
-}
-
-.addBook{
-  display: none;
 }
 
 .form-container {
@@ -73,7 +73,7 @@ h2 {
   border: 3px solid black;
 }
 
-.nav li{
+.nav li {
   all: unset;
   border-right: 2px solid black;
   padding-right: 10px;
@@ -83,14 +83,12 @@ h2 {
   border-right: none;
 }
 
-
 .nav a {
   text-decoration: none;
   color: black;
 }
 
 .contactInfo {
-  display: none;
   flex-direction: column;
   align-items: center;
 }
@@ -100,6 +98,3 @@ footer {
   margin-top: 5%;
   border: 3px solid black;
 }
-
-
-
