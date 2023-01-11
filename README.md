@@ -182,7 +182,7 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
--   Add Navigation
+-   Use ES6 syntax
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
