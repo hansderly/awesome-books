@@ -1,50 +1,16 @@
-/* eslint-disable max-classes-per-file */
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
-}
-
-class Library {
-  constructor() {
-    this.books = [];
-  }
-
-  add(book) {
-    this.books.push(book);
-  }
-
-  remove(id) {
-    this.books = this.books.filter((el, i) => i !== id);
-  }
-
-  setList(listBook) {
-    this.books = listBook;
-  }
-}
-
-const library = new Library();
-
 const form = document.querySelector('.form');
 const { title, author } = form.elements;
-
-const data = JSON.parse(localStorage.getItem('library'));
-if (data !== null) library.setList(data.books);
-
-const saveTolocalStorage = () => {
-  const libraryStringify = JSON.stringify(library);
-  localStorage.setItem('library', libraryStringify);
-};
+const data = localStorage.getItem('library');
+let library = JSON.parse(data) || [];
 
 const loadBooks = () => {
   const bookWraper = document.querySelector('.bookWraper');
   let bookElement = '';
-  library.books.forEach((book, index) => {
+  library.forEach((book) => {
     bookElement += `
                 <div class="book">
                 <div id="book-title">${book.title} by ${book.author}</div>
-                <button id="remove" onclick="remove(${index})" >Remove</button>
+                <button id="remove" onclick="remove(${book.id})" >Remove</button>
                 </div>
                 <hr> `;
   });
@@ -52,10 +18,32 @@ const loadBooks = () => {
 };
 loadBooks();
 
+class Book {
+  constructor(title, author) {
+    this.id = Math.random();
+    this.title = title;
+    this.author = author;
+  }
+
+  add() {
+    library.push(this);
+    loadBooks();
+  }
+
+  static remove(id) {
+    library = library.filter((el) => el.id !== id);
+    loadBooks();
+  }
+
+  static saveTolocalStorage() {
+    const libraryStringify = JSON.stringify(library);
+    localStorage.setItem('library', libraryStringify);
+  }
+}
+
 const remove = (index) => {
-  library.remove(index);
-  saveTolocalStorage();
-  loadBooks();
+  Book.remove(index);
+  Book.saveTolocalStorage();
 };
 remove();
 
@@ -63,10 +51,9 @@ const addBook = (e) => {
   e.preventDefault();
   const bookTitle = title.value;
   const bookAuthor = author.value;
-  const book = new Book(bookTitle, bookAuthor);
-  library.add(book);
-  saveTolocalStorage();
-  loadBooks();
+  const newBook = new Book(bookTitle, bookAuthor);
+  newBook.add();
+  Book.saveTolocalStorage();
   form.reset();
 };
 form.addEventListener('submit', addBook);
