@@ -73,10 +73,20 @@ h2 {
   border: 3px solid black;
 }
 
-.nav Button {
+.nav li{
   all: unset;
   border-right: 2px solid black;
   padding-right: 10px;
+}
+
+.nav li:last-child {
+  border-right: none;
+}
+
+
+.nav a {
+  text-decoration: none;
+  color: black;
 }
 
 .contactInfo {
