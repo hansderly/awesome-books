@@ -10,11 +10,13 @@ h1 {
   font-weight: 700;
   text-align: center;
 }
+
 h2 {
   font-family: 'Comic Neue', cursive;
   font-weight: 700;
   text-align: center;
 }
+
 .library {
   padding: 2%;
   border: 3px solid black;
@@ -44,13 +46,13 @@ h2 {
   border: 2px solid black;
 }
 
-.divider{
+.divider {
   margin-top: 20px;
   width: 100px;
   border: 1px solid black;
 }
 
-.inputclass{
+.inputclass {
   padding: 5px;
   border: 2px solid black;
 }
