@@ -2,6 +2,7 @@ const form = document.querySelector('.form');
 const { title, author } = form.elements;
 
 const data = localStorage.getItem('library');
+
 let library = JSON.parse(data) || [];
 
 const saveTolocalStorage = () => {
@@ -15,8 +16,7 @@ const loadBooks = () => {
   library.forEach((book, index) => {
     bookElement += `
                 <div class="book">
-                <div id="book-title">${book.bookTitle}</div>
-                <div id="book-author">${book.bookAuthor}</div>
+                <div id="book-title">${book.bookTitle} by ${book.bookAuthor}</div>
                 <button id="remove" onclick="remove(${index})" >Remove</button>
                 </div>
                 <hr> `;
