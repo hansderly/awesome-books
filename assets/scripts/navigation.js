@@ -23,3 +23,11 @@ contact.addEventListener('click', () => {
   addBookSection.classList.add('hide');
   contactSection.classList.remove('hide');
 });
+
+const option = {
+  month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
+};
+const today = new Date();
+const todayFormat = today.toLocaleString('en-US', option);
+const time = document.querySelector('.time-text');
+time.innerHTML = todayFormat;
